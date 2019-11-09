@@ -1,0 +1,3 @@
+#Powershell
+
+Remove-Item –path c:\users\petros\documents\myfile.txt - force 
