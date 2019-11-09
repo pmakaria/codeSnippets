@@ -1,0 +1,7 @@
+run in Command line 
+
+c:\>type <file_name> | find /c /v "~~~"
+
+/c count number of lines
+/i ignore case
+/v lines not containing "<string>"
