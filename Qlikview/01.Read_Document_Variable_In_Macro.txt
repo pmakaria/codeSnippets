@@ -1,0 +1,21 @@
+--Qlikview
+--The following code, can be used to create a small function
+--in a QV Document macro, that will read a QV Document Variable (created during loading for example)
+--and used it within the macro code.
+
+
+function read_Var(varName)
+	set Name1 = ActiveDocument.Variables(varName)
+	read_var=Name1.GetContent.String
+end function
+
+
+
+
+sub run()
+on error resume next
+	  msgbox(read_Var("vYearWeek"))
+end sub
+
+
+
