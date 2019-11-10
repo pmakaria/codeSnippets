@@ -1,0 +1,16 @@
+//With this chunk of code, I wanted to simulate a cartesian product between two tables
+//eg. I wanted to multiply a specific data set from my source table, as many times as the number of days
+//defined in the formula.
+//The mapping loads calculate the first and last day of the week, based on a given date.
+
+
+While IterNo()<=(LOAD_ENDDATE+ceil(ApplyMap('LASTDAY',LOAD_ENDDATE,'N/A')- ApplyMap('FIRSTDAY',LOAD_STARTDATE,'N/A'))) - (LOAD_STARTDATE -ceil(ApplyMap('LASTDAY',LOAD_ENDDATE,'N/A')- ApplyMap('FIRSTDAY',LOAD_STARTDATE,'N/A')))  +1;
+;
+LOAD LOAD_STARTDATE, 
+     LOAD_ENDDATE, 
+     INS_DATE,
+     RESULT	
+FROM
+[LOAD_SET_ALL.QVD]
+(qvd)
+;
