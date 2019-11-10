@@ -1,0 +1,38 @@
+//In case a cartesian product is needed
+//among a number of tables.
+
+
+
+[Table1]:
+LOAD * INLINE [
+    Col1
+	11
+	12
+	13
+	14
+	15
+];
+
+outer Join
+
+[Table2]:
+LOAD * INLINE [
+    Col2
+	21
+	22
+	23
+	24
+	25
+];
+
+outer join
+[Table3]:
+LOAD * INLINE [
+    Col3
+	31
+	32
+	33
+	34
+	35
+];
+
