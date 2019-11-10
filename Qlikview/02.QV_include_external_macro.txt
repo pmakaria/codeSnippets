@@ -1,0 +1,13 @@
+#You can have a common "library" file
+#with macro code, called for example "commonFunctions.vbs").
+#This file can be re-used by QV apps, by just including it
+#
+Call IncludeCommon
+Sub IncludeCommon
+ Dim objFSO, file, str
+ Set objFSO = CreateObject("Scripting.FileSystemObject")
+ Set file = objFSO.OpenTextFile("commonFunctions.vbs")
+ str = file.ReadAll
+ file.Close
+ ExecuteGlobal str
+End Sub
