@@ -1,0 +1,13 @@
+--When having multiple groups of records and need to retrieve just one of them
+--based on an unknown value field (eg. earliest/latest date)
+--we can use the "PARTITION BY" Clause to group records, sort them and get the first/last one.
+
+SELECT prod_no,
+       delivery_wk,
+       del_qty ( SELECT a . prod_no,
+                a.Delivery_wk,
+                SUM (a.prod_qty_ord) del_qty,
+                RANK () OVER (PARTITION BY prod_NO ORDER BY a.delivery_wk) ord1
+             FROM     product_orders               a
+ GROUP     BY   a . prod_no     ,
+                a.delivery_wk)       WHERE ord1 = 1;
