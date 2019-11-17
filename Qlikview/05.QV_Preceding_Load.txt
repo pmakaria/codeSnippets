@@ -1,0 +1,48 @@
+//Preceding load, is a useful technique in order to organize your etl, in layers in a "single" step
+//it goes bottom up
+//first step is to "Read" raw data
+//second step you can perform a "clean up", specific column selection, transformation, calculations
+//third step and onwards you can build further calculated columns, from the available information retrieved in step 2.
+
+
+[STOCK_LOAD]:
+LOAD *,
+    if(
+    	ApplyMap('Map_DT_Info', StartDT_DE, 'No')='Yes', 'Yes','No'
+       ) as [Check DT]
+;
+LOAD
+    $(vYearWeek) as YearWeek,
+    BaTeamleader, 	
+    FreeRange, 
+    repeat('0', (2 - len(text(Cat1)))) & text(Cat1) as [Prod Cat 1], 
+    repeat('0', (4 - len(text(Cat2)))) & text(Cat2) as [Prod Cat 2], 
+    ArtName
+    if(Stock<0,0,Stock) as Stock,
+    ApplyMap('map_StartDT_DE',ArtNo,'') as [StartDT_DE] 
+;
+LOAD CTY, 
+     ArticleDCG, 
+     Action, 
+     EmpName, 
+     Teamleader, 
+     Planner, 
+     SpecialRange, 
+     Cat1, 
+     Cat2, 
+     ArtNo, 
+     ArtName, 
+     ProductName, 
+     Cat3, 
+     StockAvl, 
+     OpenLF, 
+     OrderMethod, 
+     Switch, 
+     ManualSS, 
+     StartDt, 
+     EndDT, 
+     Importance,
+     Stock    
+FROM
+[$(vSourcePath)$(vSWFName)]
+(ooxml, embedded labels, table is DCG1);
