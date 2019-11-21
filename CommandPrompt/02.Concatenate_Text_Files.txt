@@ -1,0 +1,3 @@
+rem If for example you have 10 files with .asc extension and want to concatenate them 
+rem into one file.
+copy /a *.asc full.asc
