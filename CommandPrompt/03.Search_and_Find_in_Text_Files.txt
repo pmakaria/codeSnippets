@@ -1,0 +1,3 @@
+rem ignores case of letters
+rem display only count of lines containing the string.
+find /c /i "error" "myApp.log"
