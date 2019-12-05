@@ -1,0 +1,7 @@
+//Assuming that we have an underlying table
+//witha a "date_from" and "date_to" fields and a variable, which we can manipulate using an input field or an input slider etc
+//we can create a calculated dimension
+//that will automatically display a message describing if the record is "active" or "not active" on a specific date that the user selects
+//we can use this dimension to dynamically filter records
+
+=if(date(DATE_FROM,'DD/MM/YYYY')<=date($(vSnapshotDt),'DD/MM/YYYY') and date(DATE_TO,'DD/MM/YYYY')>=date($(vSnapshotDt),'DD/MM/YYYY') ,'Active on '&Date($(vSnapshotDt),'DD/MM/YYYY'),'Not Active on '&Date($(vSnapshotDt),'DD/MM/YYYY'))
