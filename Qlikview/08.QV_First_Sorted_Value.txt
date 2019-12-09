@@ -1,0 +1,13 @@
+//First sorted value
+//returns the record that is sorted first, based on a field specified
+//In case of multiple records for the same key, this would be useful to make a selection
+//based on defined criteria (eg. get the most recent record, based on a date field).
+
+//providing 1 as the rank value, returns the 1st sorted record (value n will return the nth record)
+
+
+[LT]:
+LOAD 	LTKEY, 
+     	firstsortedvalue(PLANNED_TIME,FROM_DATE,1) as PLANNED_TIME,  
+Resident LT_TABLE
+group by LTIMEKEY
