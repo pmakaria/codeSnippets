@@ -1,4 +1,4 @@
-This is a template application in Qlikview, featuring the following custom functionality:
+This is an archive, containing a template application in Qlikview, featuring the following custom functionality:
 •	Usage of basic exception handling
 •	Logging and log report
 •	Email Alert
