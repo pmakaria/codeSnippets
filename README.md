@@ -11,7 +11,7 @@ Qlikview scripts and formulas.
 ## SQL
 Oracle SQL snippets (although some of them are standard SQL as well). 
 ## UiPath
-A small UiPath Automation software project, to autmatically scrap job postings from a website.
+A small UiPath Automation job that demonstrates how to create and use global variables within a project.
 ## powershell
 Powershell commands
 ## VBS
