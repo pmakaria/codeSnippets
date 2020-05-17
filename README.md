@@ -7,7 +7,7 @@ Formulas that have been used as expressions in Cognos reports.
 ## CommandPrompt
 Several commands for DOS/Windows prompt.
 ## Qlikview
-Qlikview scripts and formulas.
+Qlikview scripts and formulas.  
 This folder also includes a Qlikview **"Basic Template"**, where a number of functionalities such as custom **logging**, **exception handling**, **email alerting** are demonstrated.
 ## SQL
 Oracle SQL snippets (although some of them are standard SQL as well). 
