@@ -1,0 +1,10 @@
+--We need to get only a random number of rows. eg 10k rows
+select *
+from
+	(
+	select * 
+	from tab_name 
+	order by 
+	DBMS_RANDOM.VALUE 
+	)
+where rownum < 10001;
