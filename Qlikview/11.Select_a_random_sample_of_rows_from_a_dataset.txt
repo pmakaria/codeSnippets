@@ -1,4 +1,5 @@
 //selects a random sample from dataset orders
 
 
-Sample 0.15 LOAD * from orders.qvd(qvd)
+Sample 0.15 LOAD *;
+LOAD * from orders.qvd(qvd)
