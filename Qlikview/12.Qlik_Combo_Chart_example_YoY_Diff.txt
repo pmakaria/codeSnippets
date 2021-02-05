@@ -1,0 +1,41 @@
+Data set
+
+ProcessDate,Trn_ID
+01/02/2020, 904488
+05/06/2020, 914596
+06/06/2020, 914678
+10/09/2020, 955963
+.
+.
+.
+.
+.
+30/12/2020, 996071
+
+
+
+Creating a combo chart in Qliksense, that will display per month (for the last x months - 4 in this example), the number of transactions as well as the YoY % difference (eg. month in this period compared to the same month, one year before).
+
+Dimension expression (month). The idea is to display the last 4 months in our combo chart and their respective YoY %difference. So we need to retrieve the last four months and their corresponding months in the previous period (-16 to -13 months before). We want to display only the month name in the combo chart and not the Year (we will infer that in the measurements).
+
+=if((ProcessDate>=monthstart(today(),-16) and ProcessDate<=monthend(today(),-13)) or (ProcessDate>=monthstart(today(),-4) and ProcessDate<=monthend(today(),-1)
+),month(monthstart(ProcessDate)))
+
+
+Expression 1 (bars). Transactions latest period (eg. 4 months before current month). We measure (ignoring all user selections) transactions that have occured in the previous 4 months.
+
+=count({1<ProcessDate={">=$(=date(monthstart(today(),-4)))<=$(=date(monthend(today(),-1)))"}>}Trn_ID)
+
+Expression 2 (marker). We measure the YoY % Difference as ((previous 4 month period) - (4 month period 1 year before)) /  (4 month period 1 year before).
+
+
+
+=(
+(
+count({1<ProcessDate={">=$(=date(monthstart(today(),-4)))<=$(=date(monthend(today(),-1)))"}>}Trn_ID)-
+count({1<ProcessDate={">=$(=date(monthstart(today(),-16)))<=$(=date(monthend(today(),-13)))"}>}Trn_ID)
+)
+/
+count({1<ProcessDate={">=$(=date(monthstart(today(),-16)))<=$(=date(monthend(today(),-13)))"}>}Trn_ID)
+)
+
