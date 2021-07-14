@@ -1,0 +1,55 @@
+-- Works on mySQL db
+
+--assume the following two fileds in a parent-child relationship table
+
+--base_tbl.key -->primary_key
+--base_tbl.pre_key -->primary_key of the parent record
+
+-- find parents provided the child key
+WITH RECURSIVE ms AS (
+  SELECT key, 
+	submission_date, 
+	pre_key, 
+	0 AS relative_depth
+  FROM base_tbl
+  WHERE key = 'xxxxx'
+
+  UNION ALL
+
+  SELECT cat.key, 
+	cat.submission_date, 
+	cat.pre_key, 
+	p.relative_depth - 1
+  FROM base_tbl cat, 
+       ms p
+  WHERE cat.key = p.pre_key
+)
+SELECT key as child_key, 
+ 	submission_date,
+	pre_key as parent_key,
+	relative_depth 
+FROM ms;
+
+
+
+
+
+-- find children of a record, given its key
+
+WITH RECURSIVE sub_tree AS (
+  SELECT key, 
+	submission_date, 
+	1 AS relative_depth
+  FROM base_tbl  
+  WHERE key = 'xxxxx'
+
+  UNION ALL
+
+  SELECT cat.key, 
+	cat.submission_date, 
+	st.relative_depth + 1
+  FROM base_tbl cat, 
+	sub_tree st
+  WHERE cat.pre_key = st.key
+)
+SELECT * FROM sub_tree;
